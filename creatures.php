@@ -10,7 +10,7 @@ include ("functions/markov_functions.php");
 include ("functions/log_functions.php");
 
 $logText = "";
-$arrSuffixes = array("ium", "ite", "ide", "ate", "on", "gen", "on");
+$arrSuffixes = array("pod", "saur", "ped", "phore", "acanth", "avis", "derm", "form", "pus", "stome", "rex");
 $arrMarkov = loadMarkov();
 
 $requestParameters = explode('/', trim($_SERVER['PATH_INFO'],'/'));
@@ -23,7 +23,7 @@ if ($requestParameters[0] == "") {
     $json = $json . "\"element\":\"" . $element . "\"";
 } else {
     for ($e = 1; $e <= $requestParameters[0]; $e++) {
-        $element = createElement($arrMarkov, $arrSuffixes);
+        $element = createCreature($arrMarkov, $arrSuffixes);
         $json = $json . "\"element" . $e . "\":\"" . $element . "\"";
         if ($e < $requestParameters[0]) {
             $json = $json . ",";
@@ -39,7 +39,7 @@ echo $json;
 
 // **************************** FUNCTIONS *****************************
 
-function createElement($arrMarkov, $arrSuffixes) {
+function createCreature($arrMarkov, $arrSuffixes) {
     
     $prefixLength = rand(3, 7);
     $prefixText = "";
